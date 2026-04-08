@@ -1,0 +1,344 @@
+/* ── Wrapper & Scene ─────────────────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 60% 40%, #1e293b 0%, #0f172a 100%);
+  padding: 40px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  perspective: 1200px;
+}
+
+/* ── Calendar Block ──────────────────────────────────────────────────────── */
+.calendarBlock {
+  position: relative;
+  width: 220px;
+  height: 290px;
+  transform: rotateY(-8deg) rotateX(4deg);
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.7));
+}
+
+/* ── Page edges (3D depth illusion) ──────────────────────────────────────── */
+.edgeRight {
+  position: absolute;
+  top: 8px;
+  right: -14px;
+  width: 14px;
+  height: calc(100% - 8px);
+  background: linear-gradient(to right, #c8b89a, #a89070);
+  border-radius: 0 4px 4px 0;
+  z-index: 1;
+}
+
+.edgeBottom {
+  position: absolute;
+  bottom: -10px;
+  left: 4px;
+  width: calc(100% - 4px);
+  height: 10px;
+  background: linear-gradient(to bottom, #c8b89a, #a89070);
+  border-radius: 0 0 4px 4px;
+  z-index: 1;
+}
+
+/* ── Rings / Binding ─────────────────────────────────────────────────────── */
+.ringsWrap {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 20;
+  padding: 0 10px;
+}
+
+.ring {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid #1a1a1a;
+  background: radial-gradient(circle at 35% 35%, #888, #333);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.15);
+}
+
+/* ── Base stand ──────────────────────────────────────────────────────────── */
+.baseStand {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 20px;
+  background: linear-gradient(to bottom, #4b3f35, #2d2520);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+  z-index: 2;
+}
+
+.baseStand::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+}
+
+/* ── Pages ───────────────────────────────────────────────────────────────── */
+.nextPage,
+.currentPage {
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.nextPage {
+  background: linear-gradient(160deg, #fdf6ec 0%, #f5e8d0 100%);
+  z-index: 5;
+}
+
+.currentPage {
+  background: linear-gradient(160deg, #fffdf8 0%, #fef5e4 100%);
+  z-index: 10;
+  touch-action: none;
+}
+
+.pageBack {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #e8ddd0 0%, #d4c5b0 100%);
+  border-radius: 3px;
+  z-index: 9;
+}
+
+/* ── Tear line ───────────────────────────────────────────────────────────── */
+.tearLine {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 8px;
+}
+
+.tearDot {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #c9b99a;
+  flex-shrink: 0;
+}
+
+/* ── Page content ────────────────────────────────────────────────────────── */
+.pageTop {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.pageYear {
+  font-size: 11px;
+  font-weight: 700;
+  color: #9ca3af;
+  letter-spacing: 1px;
+}
+
+.pageMon {
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #c0392b;
+  text-transform: uppercase;
+}
+
+.pageNum {
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 1;
+  color: #1e293b;
+  letter-spacing: -4px;
+  margin: 4px 0 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.pageDayName {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.faded {
+  opacity: 0.6;
+}
+
+/* ── Hint ────────────────────────────────────────────────────────────────── */
+.hint {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+  animation: hintBob 1.6s ease-in-out infinite;
+}
+
+.hintArrow {
+  display: inline-block;
+  animation: hintBob 1.6s ease-in-out infinite;
+}
+
+@keyframes hintBob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+/* ── Sub-label ───────────────────────────────────────────────────────────── */
+.subLabel {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin-top: 28px;
+}
+
+/* ── Celebration overlay ──────────────────────────────────────────────────── */
+.celebOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.celebCard {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 40px 36px;
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.celebEmojis {
+  font-size: 36px;
+  margin-bottom: 12px;
+  letter-spacing: 4px;
+}
+
+.celebTitle {
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.celebYear {
+  font-size: 48px;
+  font-weight: 900;
+  color: #f59e0b;
+  margin: 0 0 10px;
+  line-height: 1;
+}
+
+.celebSub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.celebBtn {
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 32px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.celebBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.55);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .calendarBlock {
+    width: 190px;
+    height: 250px;
+  }
+
+  .pageNum {
+    font-size: 82px;
+  }
+
+  .pageMon {
+    font-size: 13px;
+  }
+}
