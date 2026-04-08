@@ -1,4 +1,4 @@
-/* ── Wrapper & Scene ─────────────────────────────────────────────────────── */
+/*  Wrapper & Scene  */
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@
   perspective: 1200px;
 }
 
-/* ── Calendar Block ──────────────────────────────────────────────────────── */
+/*  Calendar Block  */
 .calendarBlock {
   position: relative;
   width: 220px;
@@ -38,7 +38,7 @@
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.7));
 }
 
-/* ── Page edges (3D depth illusion) ──────────────────────────────────────── */
+/*  Page edges (3D depth illusion)  */
 .edgeRight {
   position: absolute;
   top: 8px;
@@ -61,7 +61,7 @@
   z-index: 1;
 }
 
-/* ── Rings / Binding ─────────────────────────────────────────────────────── */
+/*  Rings / Binding  */
 .ringsWrap {
   position: absolute;
   top: -14px;
@@ -85,7 +85,7 @@
     inset 0 1px 2px rgba(255, 255, 255, 0.15);
 }
 
-/* ── Base stand ──────────────────────────────────────────────────────────── */
+/*  Base stand  */
 .baseStand {
   position: absolute;
   bottom: -22px;
@@ -111,7 +111,7 @@
   border-radius: 2px;
 }
 
-/* ── Pages ───────────────────────────────────────────────────────────────── */
+/*  Pages  */
 .nextPage,
 .currentPage {
   position: absolute;
@@ -146,7 +146,7 @@
   z-index: 9;
 }
 
-/* ── Tear line ───────────────────────────────────────────────────────────── */
+/*  Tear line  */
 .tearLine {
   position: absolute;
   top: 14px;
@@ -167,7 +167,7 @@
   flex-shrink: 0;
 }
 
-/* ── Page content ────────────────────────────────────────────────────────── */
+/*  Page content  */
 .pageTop {
   display: flex;
   align-items: baseline;
@@ -213,7 +213,7 @@
   opacity: 0.6;
 }
 
-/* ── Hint ────────────────────────────────────────────────────────────────── */
+/*  Hint  */
 .hint {
   position: absolute;
   bottom: 14px;
@@ -242,7 +242,7 @@
   }
 }
 
-/* ── Sub-label ───────────────────────────────────────────────────────────── */
+/*  Sub-label  */
 .subLabel {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.35);
@@ -251,7 +251,7 @@
   margin-top: 28px;
 }
 
-/* ── Celebration overlay ──────────────────────────────────────────────────── */
+/*  Celebration overlay  */
 .celebOverlay {
   position: fixed;
   inset: 0;
@@ -436,7 +436,7 @@
   }
 }
 
-/* ── Responsive ──────────────────────────────────────────────────────────── */
+/*  Responsive  */
 @media (max-width: 480px) {
   .calendarBlock {
     width: 190px;

@@ -596,7 +596,7 @@ li.done::before{content:'☑';color:${accent}}.empty{color:#94a3b8;font-size:12p
 
   return (
     <div className={styles.page} style={{ '--page-bg': theme['--page-bg'] }}>
-      {/* ── Welcome modal (first visit) ── */}
+      {/*  Welcome modal (first visit)  */}
       {showWelcome && (
         <div className={styles.welcomeOverlay}>
           <div className={styles.welcomeCard}>
@@ -635,7 +635,7 @@ li.done::before{content:'☑';color:${accent}}.empty{color:#94a3b8;font-size:12p
             />
             <div className={styles.seasonBadge}>{season.toUpperCase()}</div>
 
-            {/* ── ⓘ and Tour buttons inside hero ── */}
+            {/*  ⓘ and Tour buttons inside hero  */}
             <div className={styles.heroToolbar}>
               <button
                 className={styles.heroBtnInfo}
@@ -653,7 +653,7 @@ li.done::before{content:'☑';color:${accent}}.empty{color:#94a3b8;font-size:12p
               </button>
             </div>
 
-            {/* ── Info panel ── */}
+            {/*  Info panel  */}
             {showInfo && (
               <div
                 className={styles.infoOverlay}
@@ -698,7 +698,7 @@ li.done::before{content:'☑';color:${accent}}.empty{color:#94a3b8;font-size:12p
 
           {/*  Bottom  */}
           <div className={styles.bottom}>
-            {/* ── Notes / Tasks panel ── */}
+            {/*  Notes / Tasks panel  */}
             <div className={styles.notesCol}>
               <div className={styles.notesLabel}>
                 {activeTab === 'day' && selectedDay
@@ -824,7 +824,7 @@ li.done::before{content:'☑';color:${accent}}.empty{color:#94a3b8;font-size:12p
               )}
             </div>
 
-            {/* ── Calendar Grid ── */}
+            {/*  Calendar Grid  */}
             <div className={styles.gridCol}>
               <div id="cal-month-nav" className={styles.monthNav}>
                 <button className={styles.navArrow} onClick={prevMonth}>

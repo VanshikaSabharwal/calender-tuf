@@ -11,7 +11,7 @@
   position: relative;
 }
 
-/* ── Hero toolbar (ⓘ + Tour) inside hero image ────────────────────────── */
+/*  Hero toolbar (ⓘ + Tour) inside hero image  */
 .heroToolbar {
   position: absolute;
   bottom: 12px;
@@ -41,7 +41,7 @@
   background: rgba(0, 0, 0, 0.65);
 }
 
-/* ── Welcome modal ────────────────────────────────────────────────────── */
+/*  Welcome modal  */
 .welcomeOverlay {
   position: fixed;
   inset: 0;
@@ -144,7 +144,7 @@
   filter: brightness(1.1);
 }
 
-/* ── Info panel ───────────────────────────────────────────────────────── */
+/*  Info panel  */
 .infoPanel {
   position: absolute;
   bottom: 46px;
@@ -242,6 +242,8 @@
   align-items: stretch;
   width: 620px;
   max-width: 100%;
+  perspective: 1200px;
+  perspective-origin: center 20%;
 }
 
 /*  Card — theme variables default to winter/blue, overridden inline per season */
@@ -250,13 +252,15 @@
   --c-accent-dark: #2563eb;
   --c-accent-light: #dbeafe;
   --c-accent-text: #1e3a5f;
-  background: #fff;
+  background: linear-gradient(175deg, #ffffff 0%, #f7f7f5 100%);
   width: 100%;
   border-radius: 0 0 3px 3px;
   overflow: hidden;
   position: relative;
   margin-top: -9px;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 14px 40px rgba(0, 0, 0, 0.22);
   will-change: transform;
   transform-origin: top center;
 }
@@ -769,54 +773,47 @@
   color: #fff;
 }
 
-/*  Page flip animations (bottom-to-top, pivot at binding / top edge)  */
+/*  Page flip animation — soft paper, bottom to top, pivot at binding  */
 
-/* Next: bottom lifts up (pivot at top edge) */
-@keyframes pageFlipNext {
+@keyframes pageFlip {
   0% {
-    transform: perspective(900px) rotateX(0deg);
+    transform: rotateX(0deg) scaleY(1);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
   }
-  8% {
-    transform: perspective(900px) rotateX(5deg);
+  12% {
+    /* paper peels — bottom edge lifts, slight perspective compression */
+    transform: rotateX(-20deg) scaleY(0.98);
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.35);
   }
-  48% {
-    transform: perspective(900px) rotateX(-90deg);
+  46% {
+    /* edge-on — paper is vertical, shadow minimal */
+    transform: rotateX(-90deg) scaleY(0.93);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  }
+  54% {
+    transform: rotateX(-90deg) scaleY(0.93);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  }
+  82% {
+    /* new page almost flat — slight overshoot (paper flutter) */
+    transform: rotateX(-7deg) scaleY(1.01);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
   }
   92% {
-    transform: perspective(900px) rotateX(-5deg);
+    /* settle back — tiny secondary flutter */
+    transform: rotateX(-2deg) scaleY(1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
   }
   100% {
-    transform: perspective(900px) rotateX(0deg);
+    transform: rotateX(0deg) scaleY(1);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
   }
 }
 
-/* Prev: top folds down (pivot at bottom edge) */
-@keyframes pageFlipPrev {
-  0% {
-    transform: perspective(900px) rotateX(0deg);
-  }
-  8% {
-    transform: perspective(900px) rotateX(-5deg);
-  }
-  48% {
-    transform: perspective(900px) rotateX(90deg);
-  }
-  92% {
-    transform: perspective(900px) rotateX(5deg);
-  }
-  100% {
-    transform: perspective(900px) rotateX(0deg);
-  }
-}
-
-.flippingNext {
-  transform-origin: top center !important;
-  animation: pageFlipNext 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
+.flippingNext,
 .flippingPrev {
-  transform-origin: bottom center !important;
-  animation: pageFlipPrev 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: top center;
+  animation: pageFlip 0.6s cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 /*  Season badge  */
@@ -863,7 +860,7 @@
   background: rgba(255, 255, 255, 0.85);
 }
 
-/* ── Country selector ────────────────────────────────────────────────────── */
+/*  Country selector  */
 .countrySelect {
   font-size: 11px;
   font-weight: 600;
@@ -883,7 +880,7 @@
   border-color: var(--c-accent);
 }
 
-/* ── Cross mark on cell ───────────────────────────────────────────────────── */
+/*  Cross mark on cell  */
 .cellCrossed {
   opacity: 0.55;
 }
@@ -901,14 +898,14 @@
   opacity: 0.75;
 }
 
-/* ── Emoji indicators on cell ─────────────────────────────────────────────── */
+/*  Emoji indicators on cell  */
 .cellEmojiRow {
   font-size: 18px;
   line-height: 1;
   letter-spacing: -1px;
 }
 
-/* ── Cross toggle button ──────────────────────────────────────────────────── */
+/*  Cross toggle button  */
 .crossToggleBtn {
   font-size: 10px;
   font-weight: 700;
@@ -934,7 +931,7 @@
   color: #dc2626 !important;
 }
 
-/* ── Emoji picker ─────────────────────────────────────────────────────────── */
+/*  Emoji picker  */
 .emojiPicker {
   display: flex;
   flex-wrap: wrap;
