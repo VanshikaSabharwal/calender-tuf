@@ -40,7 +40,7 @@ export default function useCalendarTour() {
     tour.addStep({
       id: 'country',
       attachTo: { element: '#cal-country', on: 'bottom' },
-      title: '🌍 Pick your country',
+      title: 'Pick your country',
       text:  'Choose your country from this dropdown to see <strong>personalised public holidays</strong> highlighted on your calendar.',
       buttons: [ btn('← Back', back, 'shepherd-btn-skip'), btn('Skip tour', () => tour.cancel(), 'shepherd-btn-skip'), btn('Next →', next) ],
     })
@@ -48,7 +48,7 @@ export default function useCalendarTour() {
     tour.addStep({
       id: 'day-click',
       attachTo: { element: '#cal-grid', on: 'top' },
-      title: '📅 Click any day',
+      title: 'Click any day',
       text:  'Tap or click a date to select it. This opens the <strong>Day panel</strong> on the left with marking, emoji and task options.',
       buttons: [ btn('← Back', back, 'shepherd-btn-skip'), btn('Skip tour', () => tour.cancel(), 'shepherd-btn-skip'), btn('Next →', next) ],
     })
@@ -64,7 +64,7 @@ export default function useCalendarTour() {
     tour.addStep({
       id: 'emoji',
       attachTo: { element: '#cal-emoji', on: 'right' },
-      title: '😊 Tag days with emojis',
+      title: 'Tag days with emojis',
       text:  'Add emoji tags to any day as a quick visual reference — 🎯 goals, ✈️ travel, 🎂 birthdays. They appear as tiny icons on the grid cell.',
       buttons: [ btn('← Back', back, 'shepherd-btn-skip'), btn('Skip tour', () => tour.cancel(), 'shepherd-btn-skip'), btn('Next →', next) ],
     })
@@ -72,7 +72,7 @@ export default function useCalendarTour() {
     tour.addStep({
       id: 'task-add',
       attachTo: { element: '#cal-task-input', on: 'top' },
-      title: '➕ Add tasks',
+      title: 'Add tasks',
       text:  'Type a task and press <strong>Enter</strong> or click <strong>"+ Add task"</strong>. Days with tasks show a small dot on the grid.',
       buttons: [ btn('← Back', back, 'shepherd-btn-skip'), btn('Skip tour', () => tour.cancel(), 'shepherd-btn-skip'), btn('Next →', next) ],
     })
@@ -80,10 +80,32 @@ export default function useCalendarTour() {
     tour.addStep({
       id: 'task-complete',
       attachTo: { element: '#cal-task-list', on: 'right' },
-      title: '✅ Complete & delete tasks',
+      title: 'Complete & delete tasks',
       text:  'Check the <strong>checkbox</strong> to mark a task done (it strikes through). Hit <strong>✕</strong> to delete it permanently.',
       buttons: [ btn('← Back', back, 'shepherd-btn-skip'), btn('Done ✓', () => tour.complete()) ],
     })
+
+tour.addStep({
+  id: 'day-based-pdf-download',
+  attachTo: { element: '#cal-day-pdf', on: 'right' },
+  title: 'Download PDF for Daily Tasks',
+  text: 'Click to download a PDF of your daily tasks.',
+  buttons: [
+    btn('← Back', back, 'shepherd-btn-skip'),
+    btn('Done ✓', () => tour.complete())
+  ],
+})
+
+tour.addStep({
+  id: 'month-based-pdf-download',
+  attachTo: { element: '#cal-month-pdf', on: 'right' },
+  title: 'Download PDF for Monthly Tasks',
+  text: 'Click to download a PDF of your monthly tasks.',
+  buttons: [
+    btn('← Back', back, 'shepherd-btn-skip'),
+    btn('Done ✓', () => tour.complete())
+  ],
+})
 
     tourRef.current = tour
     tour.start()

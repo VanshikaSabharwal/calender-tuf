@@ -482,8 +482,8 @@ li.done::before{content:'☑';color:${accent}}.empty{color:#94a3b8;font-size:12p
                     <div className={styles.taskHeader}>
                       <span className={styles.taskHeading}>Tasks</span>
                       <div className={styles.downloadBtns}>
-                        <button className={styles.dlBtn} onClick={() => downloadTasks('day')}>Day PDF</button>
-                        <button className={styles.dlBtn} onClick={() => downloadTasks('month')}>Month PDF</button>
+                        <button id="cal-day-pdf" className={styles.dlBtn} onClick={() => downloadTasks('day')}>Day PDF</button>
+                        <button id="cal-month-pdf" className={styles.dlBtn} onClick={() => downloadTasks('month')}>Month PDF</button>
                       </div>
                     </div>
                     {dayTasks.length === 0 && <div className={styles.taskEmpty}>No tasks yet</div>}

@@ -11,3 +11,7 @@ run npm i
 Credits:-
 
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=47177">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=47177">Pixabay</a>
+
+Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=99838">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=99838">Pixabay</a>
+
+Sound Effect by <a href="https://pixabay.com/users/background_music-53364585/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=441514">BACKGROUND MUSIC</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=441514">Pixabay</a>

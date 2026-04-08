@@ -23,7 +23,7 @@ export default function Home() {
             color: view === 'wall' ? '#fff' : 'rgba(255,255,255,0.6)',
             transition: 'all 0.2s',
           }}
-        >📅 Wall</button>
+        >Wall Calendar</button>
         <button
           onClick={() => setView('tear')}
           style={{
@@ -33,7 +33,7 @@ export default function Home() {
             color: view === 'tear' ? '#fff' : 'rgba(255,255,255,0.6)',
             transition: 'all 0.2s',
           }}
-        >🗓️ Tear Pad</button>
+        >Tear Pad</button>
       </div>
 
       {view === 'wall' ? <Calendar /> : <TearCalendar />}

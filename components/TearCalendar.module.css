@@ -327,6 +327,96 @@
   box-shadow: 0 8px 24px rgba(245, 158, 11, 0.55);
 }
 
+/* Top control container */
+.topControls {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 12px;
+  z-index: 50;
+}
+
+/* Button styling */
+.jumpBtn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+
+  background: linear-gradient(135deg, #6366f1, #9333ea);
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.jumpBtn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Click */
+.jumpBtn:active {
+  transform: scale(0.95);
+}
+
+/* Today button (secondary style) */
+.todayBtn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+
+  background: white;
+  color: #333;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.todayBtn:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: #f3f4f6;
+}
+
+/* Click */
+.todayBtn:active {
+  transform: scale(0.95);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .todayBtn {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .topControls {
+    top: 12px;
+  }
+
+  .jumpBtn {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .calendarBlock {

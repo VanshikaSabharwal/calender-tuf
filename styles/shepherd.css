@@ -7,7 +7,6 @@
   border: none;
   overflow: hidden;
   font-family: 'Segoe UI', system-ui, sans-serif;
-  max-width: 300px;
 }
 
 .shepherd-custom .shepherd-header {
@@ -19,7 +18,7 @@
 .shepherd-custom .shepherd-title {
   font-size: 13px;
   font-weight: 800;
-  color: #fff;
+  color: #000;
   letter-spacing: 0.2px;
 }
 
@@ -32,7 +31,7 @@
 }
 
 .shepherd-custom .shepherd-cancel-icon:hover {
-  color: #fff;
+  color: #2c2c2c;
 }
 
 .shepherd-custom .shepherd-text {

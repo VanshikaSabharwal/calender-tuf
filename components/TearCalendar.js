@@ -12,7 +12,9 @@ function addDays(d, n) {
   return r
 }
 
-// ── Confetti ──────────────────────────────────────────────────────────────────
+
+
+//  Confetti 
 function Confetti({ active }) {
   const canvasRef = useRef(null)
   const rafRef    = useRef(null)
@@ -68,7 +70,8 @@ function Confetti({ active }) {
   return <canvas ref={canvasRef} className={styles.confettiCanvas} />
 }
 
-// ── Page face ─────────────────────────────────────────────────────────────────
+
+//  Page face 
 function PageFace({ date, faded }) {
   return (
     <>
@@ -86,7 +89,7 @@ function PageFace({ date, faded }) {
   )
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
+//  Main component 
 export default function TearCalendar() {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
@@ -99,6 +102,8 @@ export default function TearCalendar() {
   const [celebration,  setCelebration]  = useState(false)
   const [confetti,     setConfetti]     = useState(false)
   const [hint,         setHint]         = useState(true)
+  const flipSoundRef = useRef(null)
+const celebrateSoundRef = useRef(null)
 
   const touchStartY  = useRef(null)
   const mouseStartY  = useRef(null)
@@ -108,21 +113,51 @@ export default function TearCalendar() {
 
   const isNewYear = current.getMonth() === 11 && current.getDate() === 31
 
-  const completeTear = useCallback(() => {
-    setCompleting(true)
-    setTearAngle(185)
-    setTimeout(() => {
-      setCurrent(prev => addDays(prev, 1))
-      setTearAngle(0)
-      setCompleting(false)
-      setTearing(false)
-      if (isNewYear) {
-        setCelebration(true)
-        setConfetti(true)
-        setTimeout(() => setConfetti(false), 4000)
+  useEffect(() => {
+  flipSoundRef.current = new Audio('/audio/tear-cal-flip.mp3')
+  celebrateSoundRef.current = new Audio('/audio/happy-new-year-sound.mp3')
+
+  // optional tuning
+  flipSoundRef.current.volume = 0.5
+  celebrateSoundRef.current.volume = 0.7
+}, [])
+
+const completeTear = useCallback(() => {
+  setCompleting(true)
+  setTearAngle(185)
+
+  if (flipSoundRef.current) {
+    flipSoundRef.current.pause()
+    flipSoundRef.current.currentTime = 0
+    flipSoundRef.current.play().catch(() => {})
+  }
+
+  setTimeout(() => {
+    setCurrent(prev => addDays(prev, 1))
+    setTearAngle(0)
+    setCompleting(false)
+    setTearing(false)
+
+    if (isNewYear) {
+      setCelebration(true)
+      setConfetti(true)
+
+      if (celebrateSoundRef.current) {
+        celebrateSoundRef.current.currentTime = 0
+        celebrateSoundRef.current.play().catch(() => {})
       }
-    }, 420)
-  }, [isNewYear])
+
+      setTimeout(() => setConfetti(false), 4000)
+    }
+  }, 420)
+}, [isNewYear])
+
+const stopCelebrateSound = () => {
+  if (celebrateSoundRef.current) {
+    celebrateSoundRef.current.pause()
+    celebrateSoundRef.current.currentTime = 0
+  }
+}
 
   const snapBack = useCallback(() => {
     setSnapping(true)
@@ -130,7 +165,7 @@ export default function TearCalendar() {
     setTimeout(() => { setSnapping(false); setTearing(false) }, 300)
   }, [])
 
-  // ── Touch ──────────────────────────────────────────────────────────────────
+  //  Touch 
   const onTouchStart = (e) => {
     touchStartY.current = e.touches[0].clientY
     setTearing(true)
@@ -148,7 +183,7 @@ export default function TearCalendar() {
     touchStartY.current = null
   }
 
-  // ── Mouse (desktop) ────────────────────────────────────────────────────────
+  //  Mouse (desktop) 
   const onMouseDown = (e) => {
     mouseStartY.current = e.clientY
     isDragging.current  = true
@@ -187,34 +222,50 @@ export default function TearCalendar() {
     zIndex:         10,
   }
 
+  const goToLastDay = () => {
+  const year = current.getFullYear()
+  const lastDay = new Date(year, 11, 31) // Dec = 11
+  lastDay.setHours(0, 0, 0, 0)
+  setCurrent(lastDay)
+}
+
   return (
     <div className={styles.wrapper}>
+<div className={styles.topControls}>
+  <button className={styles.jumpBtn} onClick={goToLastDay}>
+     Dec 31 (For a Celebration!)
+  </button>
+
+  <button className={styles.todayBtn} onClick={() => setCurrent(today)}>
+     Today
+  </button>
+</div>
       <Confetti active={confetti} />
 
       <div className={styles.scene}>
         <div className={styles.calendarBlock}>
 
-          {/* ── Right edge (page stack depth) */}
+          {/*  Right edge (page stack depth) */}
           <div className={styles.edgeRight} />
-          {/* ── Bottom edge */}
+          {/*  Bottom edge */}
           <div className={styles.edgeBottom} />
 
-          {/* ── Rings / binding at top */}
+          {/*  Rings / binding at top */}
           <div className={styles.ringsWrap}>
             {Array.from({ length: 9 }, (_, i) => (
               <div key={i} className={styles.ring} />
             ))}
           </div>
 
-          {/* ── Base stand */}
+          {/*  Base stand */}
           <div className={styles.baseStand} />
 
-          {/* ── Next page (revealed underneath) */}
+          {/*  Next page (revealed underneath) */}
           <div className={styles.nextPage}>
             <PageFace date={next} faded={false} />
           </div>
 
-          {/* ── Current page (torn by user) */}
+          {/*  Current page (torn by user) */}
           <div
             className={styles.currentPage}
             style={pageStyle}
@@ -237,7 +288,7 @@ export default function TearCalendar() {
             )}
           </div>
 
-          {/* ── Back of torn page (shows when angle > 90) */}
+          {/*  Back of torn page (shows when angle > 90) */}
           {tearAngle > 85 && (
             <div className={styles.pageBack} />
           )}
@@ -248,7 +299,7 @@ export default function TearCalendar() {
         </p>
       </div>
 
-      {/* ── Celebration popup */}
+      {/*  Celebration popup */}
       {celebration && (
         <div className={styles.celebOverlay} onClick={() => setCelebration(false)}>
           <div className={styles.celebCard} onClick={e => e.stopPropagation()}>
@@ -256,9 +307,15 @@ export default function TearCalendar() {
             <h2 className={styles.celebTitle}>Happy New Year!</h2>
             <p className={styles.celebYear}>{next.getFullYear()}</p>
             <p className={styles.celebSub}>Wishing you joy, health &amp; success!</p>
-            <button className={styles.celebBtn} onClick={() => setCelebration(false)}>
-              🎉 Celebrate!
-            </button>
+<button
+  className={styles.celebBtn}
+  onClick={() => {
+    stopCelebrateSound()
+    setCelebration(false)
+  }}
+>
+  🎉 End Celebration!
+</button>
           </div>
         </div>
       )}
