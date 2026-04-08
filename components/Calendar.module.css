@@ -1,0 +1,700 @@
+/*  Page background  */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--page-bg, #e8e8e8);
+  padding: 40px 16px;
+  transition: background 0.6s ease;
+}
+
+/*  Outer wrap (spiral + card together)  */
+.calendarWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 500px;
+  max-width: 100%;
+}
+
+/*  Card — theme variables default to winter/blue, overridden inline per season */
+.card {
+  --c-accent:       #3b82f6;
+  --c-accent-dark:  #2563eb;
+  --c-accent-light: #dbeafe;
+  --c-accent-text:  #1e3a5f;
+  background: #fff;
+  width: 100%;
+  border-radius: 0 0 3px 3px;
+  overflow: hidden;
+  position: relative;
+  margin-top: -9px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.55);
+  will-change: transform;
+  transform-origin: top center;
+}
+
+/*  Hero  */
+.heroWrap {
+  position: relative;
+  width: 100%;
+  height: 230px;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The blue zigzag SVG — sits at bottom of heroWrap */
+.chevronSvg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  display: block;
+}
+
+/* Month/year — sits over the right part of the blue shape */
+.monthBadge {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  text-align: right;
+  line-height: 1.1;
+  z-index: 2;
+}
+
+.badgeYear {
+  display: block;
+  color: rgba(255,255,255,0.90);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.badgeMonth {
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* Hero image dots */
+.heroDots {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+  z-index: 3;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.dotActive {
+  background: #fff;
+  transform: scale(1.35);
+}
+
+/*  Bottom section  */
+.bottom {
+  display: flex;
+  padding: 14px 16px 20px;
+  gap: 14px;
+}
+
+/*  Notes column  */
+.notesCol {
+  width: 110px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.notesLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #696d73;
+  margin-bottom: 2px;
+}
+
+.notesTabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.tabBtn {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 0;
+  border-radius: 4px;
+  color: #696d73;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tabBtn:hover:not(:disabled) {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+
+.tabBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.tabActive {
+  background: var(--c-accent) !important;
+  color: #fff !important;
+  border-color: var(--c-accent) !important;
+}
+
+/* Lined textarea — mimics ruled notebook lines */
+.linesWrap {
+  flex: 1;
+  position: relative;
+}
+
+.notesTextarea {
+  width: 100%;
+  height: 120px;
+  resize: none;
+  border: none;
+  outline: none;
+  font-size: 10px;
+  line-height: 20px;
+  color: #0d0d0d;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 19px,
+    #d1d5db 19px,
+    #d1d5db 20px
+  );
+  padding: 0 2px;
+  font-family: inherit;
+  overflow: hidden;
+}
+
+.notesTextarea:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.rangeInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.rangeText {
+  font-size: 11px;
+  color: var(--c-accent);
+  font-weight: 600;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clearBtn {
+  font-size: 9px;
+  color: #9ca3af;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0 2px;
+  flex-shrink: 0;
+}
+
+.clearBtn:hover {
+  color: #ef4444;
+}
+
+/*  Grid column  */
+.gridCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Month nav */
+.monthNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.navArrow {
+  font-size: 18px;
+  color: var(--c-accent);
+  line-height: 1;
+  padding: 0 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+
+.navArrow:hover {
+  background: var(--c-accent-light);
+}
+
+.navLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: 0.3px;
+}
+
+/* Day headers */
+.dayRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 2px;
+}
+
+.dayHead {
+  text-align: center;
+  font-size: 8px;
+  font-weight: 700;
+  color: #696d73;
+  letter-spacing: 0.3px;
+  padding-bottom: 2px;
+}
+
+.weekend {
+  color: var(--c-accent);
+}
+
+/* Grid cells */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+.cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+  color: #374151;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  padding: 0;
+}
+
+.cell:not(:disabled):hover {
+  background: var(--c-accent-light);
+}
+
+.cellBlank {
+  visibility: hidden;
+  cursor: default;
+}
+
+.cellToday {
+  border: 1.5px solid var(--c-accent);
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+.cellWeekend {
+  color: var(--c-accent);
+}
+
+.cellRange {
+  background: var(--c-accent-light);
+  border-radius: 0;
+  color: var(--c-accent-text);
+}
+
+.cellEndpoint {
+  background: var(--c-accent) !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  font-weight: 700;
+}
+
+/* Selected day cell */
+.cellSelected {
+  background: var(--c-accent) !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  font-weight: 700;
+}
+
+/* Dot indicator for days with tasks */
+.taskDot {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+}
+
+/* Task panel */
+.taskPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 110px;
+}
+
+.taskEmpty {
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.taskItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 2px 0;
+}
+
+.taskCheck {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--c-accent);
+  margin-top: 2px;
+}
+
+.taskText {
+  font-size: 11px;
+  color: #374151;
+  flex: 1;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.taskDone {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.taskDel {
+  font-size: 10px;
+  color: #d1d5db;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0 2px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.taskDel:hover {
+  color: #ef4444;
+}
+
+/* Input on top, Add button full-width below */
+.taskInputRow {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: auto;
+}
+
+.taskInput {
+  width: 100%;
+  font-size: 11px;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  padding: 5px 7px;
+  outline: none;
+  color: #374151;
+  box-sizing: border-box;
+}
+
+.taskInput:focus {
+  border-color: var(--c-accent);
+}
+
+.taskAddBtn {
+  width: 100%;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--c-accent);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 0;
+  letter-spacing: 0.3px;
+  transition: background 0.15s;
+}
+
+.taskAddBtn:hover {
+  background: var(--c-accent-dark);
+}
+
+/* Today button */
+.todayBtn {
+  align-self: flex-start;
+  margin-top: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--c-accent);
+  border: 1px solid var(--c-accent);
+  border-radius: 10px;
+  padding: 3px 10px;
+  background: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.todayBtn:hover {
+  background: var(--c-accent);
+  color: #fff;
+}
+
+/* ── Page flip animations (bottom-to-top, pivot at binding / top edge) ─────── */
+
+@keyframes pageFlip {
+  0%   { transform: perspective(1000px) rotateX(0deg); }
+  7%   { transform: perspective(1000px) rotateX(6deg); }
+  50%  { transform: perspective(1000px) rotateX(-90deg); }
+  100% { transform: perspective(1000px) rotateX(0deg); }
+}
+
+.flipping {
+  animation: pageFlip 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Season badge ─────────────────────────────────────────────────────────── */
+.seasonBadge {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.85);
+  background: rgba(0,0,0,0.25);
+  border-radius: 4px;
+  padding: 2px 6px;
+  z-index: 2;
+}
+
+/* ── Holiday cell style ───────────────────────────────────────────────────── */
+.cellHoliday {
+  color: #dc2626;
+}
+
+/* Dot container inside each cell */
+.cellDots {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  height: 4px;
+}
+
+/* Holiday dot (red) */
+.holidayDot {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #dc2626;
+  flex-shrink: 0;
+}
+
+.cellSelected .holidayDot,
+.cellSelected .taskDot {
+  background: rgba(255,255,255,0.85);
+}
+
+/* ── Holiday legend below grid ────────────────────────────────────────────── */
+.holidayLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legendDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #dc2626;
+  flex-shrink: 0;
+}
+
+.legendText {
+  font-size: 8px;
+  color: #dc2626;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*  Responsive  */
+
+@media (max-width: 600px) {
+  .calendarWrap {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 8px;
+    align-items: flex-start;
+    min-height: 0;
+    height: auto;
+  }
+
+  .calendarWrap {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    border-radius: 0 0 4px 4px;
+  }
+
+  /* Compact hero — just enough for the badge */
+  .heroWrap {
+    height: 90px;
+  }
+
+  .badgeYear {
+    font-size: 10px;
+  }
+
+  .badgeMonth {
+    font-size: 14px;
+  }
+
+  /* Keep notes + grid side-by-side so they don't stack and double the height */
+  .bottom {
+    flex-direction: row;
+    padding: 8px;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .notesCol {
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  .notesLabel {
+    font-size: 8px;
+  }
+
+  .notesTabs {
+    gap: 3px;
+  }
+
+  .tabBtn {
+    font-size: 8px;
+    padding: 4px 0;
+  }
+
+  /* Compact textarea — just 3 lines */
+  .notesTextarea {
+    height: 60px;
+    font-size: 9px;
+    line-height: 20px;
+  }
+
+  .rangeText {
+    font-size: 9px;
+  }
+
+  /* Calendar grid */
+  .navArrow {
+    font-size: 18px;
+    padding: 2px 6px;
+  }
+
+  .navLabel {
+    font-size: 11px;
+  }
+
+  .dayHead {
+    font-size: 8px;
+  }
+
+  .todayBtn {
+    font-size: 8px;
+    padding: 3px 8px;
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroWrap {
+    height: 70px;
+  }
+
+  .notesCol {
+    width: 68px;
+  }
+
+  .notesTextarea {
+    height: 50px;
+  }
+}
