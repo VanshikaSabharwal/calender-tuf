@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect, useRef } from 'react'
 import styles from './Calendar.module.css'
 import SpiralBinding from './SpiralBinding'
