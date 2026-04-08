@@ -26,8 +26,8 @@
   font-size: 11px;
   font-weight: 700;
   color: #fff;
-  background: rgba(0,0,0,0.40);
-  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   padding: 4px 11px;
   cursor: pointer;
@@ -38,14 +38,14 @@
 
 .heroBtnInfo:hover,
 .heroBtnTour:hover {
-  background: rgba(0,0,0,0.65);
+  background: rgba(0, 0, 0, 0.65);
 }
 
 /* ── Welcome modal ────────────────────────────────────────────────────── */
 .welcomeOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0, 0, 0, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,8 +55,12 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .welcomeCard {
@@ -66,13 +70,19 @@
   text-align: center;
   max-width: 320px;
   width: 90%;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
   animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes popIn {
-  from { transform: scale(0.85); opacity: 0; }
-  to   { transform: scale(1);    opacity: 1; }
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .welcomeEmoji {
@@ -142,15 +152,21 @@
   width: 260px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.28);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
   z-index: 10;
   overflow: hidden;
   animation: slideDown 0.2s ease;
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .infoPanelHeader {
@@ -177,7 +193,9 @@
   padding: 2px 4px;
 }
 
-.infoPanelClose:hover { color: #ef4444; }
+.infoPanelClose:hover {
+  color: #ef4444;
+}
 
 .featureList {
   list-style: none;
@@ -228,17 +246,17 @@
 
 /*  Card — theme variables default to winter/blue, overridden inline per season */
 .card {
-  --c-accent:       #3b82f6;
-  --c-accent-dark:  #2563eb;
+  --c-accent: #3b82f6;
+  --c-accent-dark: #2563eb;
   --c-accent-light: #dbeafe;
-  --c-accent-text:  #1e3a5f;
+  --c-accent-text: #1e3a5f;
   background: #fff;
   width: 100%;
   border-radius: 0 0 3px 3px;
   overflow: hidden;
   position: relative;
   margin-top: -9px;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.55);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
   will-change: transform;
   transform-origin: top center;
 }
@@ -279,7 +297,7 @@
 
 .badgeYear {
   display: block;
-  color: rgba(255,255,255,0.90);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 1.5px;
@@ -307,11 +325,13 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: background 0.2s, transform 0.15s;
+  transition:
+    background 0.2s,
+    transform 0.15s;
 }
 
 .dotActive {
@@ -522,7 +542,9 @@
   border: none;
   background: none;
   cursor: pointer;
-  transition: background 0.12s, color 0.12s;
+  transition:
+    background 0.12s,
+    color 0.12s;
   padding: 0;
   position: relative;
 }
@@ -737,7 +759,9 @@
   padding: 3px 10px;
   background: none;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .todayBtn:hover {
@@ -749,20 +773,40 @@
 
 /* Next: bottom lifts up (pivot at top edge) */
 @keyframes pageFlipNext {
-  0%   { transform: perspective(900px) rotateX(0deg); }
-  8%   { transform: perspective(900px) rotateX(5deg); }
-  48%  { transform: perspective(900px) rotateX(-90deg); }
-  92%  { transform: perspective(900px) rotateX(-5deg); }
-  100% { transform: perspective(900px) rotateX(0deg); }
+  0% {
+    transform: perspective(900px) rotateX(0deg);
+  }
+  8% {
+    transform: perspective(900px) rotateX(5deg);
+  }
+  48% {
+    transform: perspective(900px) rotateX(-90deg);
+  }
+  92% {
+    transform: perspective(900px) rotateX(-5deg);
+  }
+  100% {
+    transform: perspective(900px) rotateX(0deg);
+  }
 }
 
 /* Prev: top folds down (pivot at bottom edge) */
 @keyframes pageFlipPrev {
-  0%   { transform: perspective(900px) rotateX(0deg); }
-  8%   { transform: perspective(900px) rotateX(-5deg); }
-  48%  { transform: perspective(900px) rotateX(90deg); }
-  92%  { transform: perspective(900px) rotateX(5deg); }
-  100% { transform: perspective(900px) rotateX(0deg); }
+  0% {
+    transform: perspective(900px) rotateX(0deg);
+  }
+  8% {
+    transform: perspective(900px) rotateX(-5deg);
+  }
+  48% {
+    transform: perspective(900px) rotateX(90deg);
+  }
+  92% {
+    transform: perspective(900px) rotateX(5deg);
+  }
+  100% {
+    transform: perspective(900px) rotateX(0deg);
+  }
 }
 
 .flippingNext {
@@ -783,8 +827,8 @@
   font-size: 8px;
   font-weight: 800;
   letter-spacing: 1.5px;
-  color: rgba(255,255,255,0.85);
-  background: rgba(0,0,0,0.25);
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 4px;
   padding: 2px 6px;
   z-index: 2;
@@ -816,7 +860,7 @@
 
 .cellSelected .holidayDot,
 .cellSelected .taskDot {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 /* ── Country selector ────────────────────────────────────────────────────── */
@@ -950,6 +994,45 @@
   text-overflow: ellipsis;
 }
 
+/*  Fullscreen dark overlay */
+.infoOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65); /* dark bg */
+  backdrop-filter: blur(4px); /* nice glass effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/*  Modal card */
+.infoModal {
+  width: min(500px, 90%);
+  max-height: 80vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: fadeInScale 0.2s ease;
+}
+
+/* ✨ Animation (optional but smooth) */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /*  Responsive  */
 
 @media (max-width: 600px) {
@@ -972,6 +1055,7 @@
 
   .calendarWrap {
     width: 100%;
+    margin-top: 40px;
   }
 
   .card {

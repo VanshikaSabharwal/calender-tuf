@@ -3,7 +3,7 @@
 
 .shepherd-custom .shepherd-content {
   border-radius: 12px;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
   border: none;
   overflow: hidden;
   font-family: 'Segoe UI', system-ui, sans-serif;
@@ -12,7 +12,7 @@
 .shepherd-custom .shepherd-header {
   background: #1e293b;
   padding: 14px 16px 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .shepherd-custom .shepherd-title {
@@ -23,7 +23,7 @@
 }
 
 .shepherd-custom .shepherd-cancel-icon {
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   font-size: 18px;
   background: none;
   border: none;

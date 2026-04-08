@@ -1,15 +1,15 @@
 export default function SpiralBinding({ width = 420 }) {
-  const svgH    = 50
-  const cy      = 32          // ring centre Y
-  const ry      = 12          // ring vertical radius
-  const paddingX = 6          // tight left/right margin
+  const svgH = 50
+  const cy = 32
+  const ry = 12
+  const paddingX = 6
   const ringCount = Math.max(Math.floor((width - paddingX * 2) / 10.5), 10)
   const spacing = (width - paddingX * 2) / ringCount
-  const rx      = spacing * 0.46   // nearly touching
+  const rx = spacing * 0.46
 
   // Horizontal page-edge band that the coils thread through
   const pageTop = cy - 4
-  const pageH   = 8
+  const pageH = 8
 
   const rings = Array.from({ length: ringCount + 1 }, (_, i) => ({
     cx: paddingX + i * spacing,
@@ -40,8 +40,10 @@ export default function SpiralBinding({ width = 420 }) {
         {rings.map(({ cx }, i) => (
           <ellipse
             key={i}
-            cx={cx} cy={cy}
-            rx={rx} ry={ry}
+            cx={cx}
+            cy={cy}
+            rx={rx}
+            ry={ry}
             fill="none"
             stroke="#111"
             strokeWidth="2.2"
@@ -57,8 +59,10 @@ export default function SpiralBinding({ width = 420 }) {
         {rings.map(({ cx }, i) => (
           <ellipse
             key={i}
-            cx={cx} cy={cy}
-            rx={rx} ry={ry}
+            cx={cx}
+            cy={cy}
+            rx={rx}
+            ry={ry}
             fill="none"
             stroke="#1a1a1a"
             strokeWidth="2.4"
@@ -69,8 +73,10 @@ export default function SpiralBinding({ width = 420 }) {
       {/*  Nail — thin wire with tiny head  */}
       {/* Vertical shaft */}
       <line
-        x1={nailX} y1={0}
-        x2={nailX} y2={cy - ry - 2}
+        x1={nailX}
+        y1={0}
+        x2={nailX}
+        y2={cy - ry - 2}
         stroke="#555"
         strokeWidth="1.2"
         strokeLinecap="round"
